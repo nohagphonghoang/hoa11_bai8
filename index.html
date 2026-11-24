@@ -1,0 +1,682 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12344a">
+  <title>Sulfuric acid H₂SO₄ | Hóa học 11</title>
+  <script>
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  </script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #193449;
+      --muted: #607789;
+      --navy: #12344a;
+      --teal: #087f82;
+      --aqua: #e8f6f5;
+      --line: #dce7ec;
+      --paper: #fff;
+      --bg: #f3f7f8;
+      --gold: #f3c64e;
+      --red: #a63c35;
+      --shadow: 0 12px 30px #173a4d10;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.6 "Segoe UI", Arial, sans-serif;
+    }
+    button, a { font: inherit; }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+    .hero {
+      padding: 38px 0 30px;
+      background: linear-gradient(125deg, #12344a, #176b73);
+      color: white;
+    }
+    .hero-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .kicker { margin: 0 0 7px; color: #b8e4df; font-size: .78rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; }
+    .hero p:last-child { max-width: 650px; margin: 12px 0 0; color: #e2f0f3; }
+    .formula-badge {
+      flex: 0 0 auto; padding: 14px 20px; border: 1px solid #ffffff50;
+      border-radius: 18px; background: #ffffff14; font-size: 1.65rem; font-weight: 800;
+    }
+    nav { display: flex; gap: 8px; flex-wrap: wrap; padding: 17px 0; }
+    nav a {
+      padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px;
+      background: white; color: var(--navy); font-size: .9rem; font-weight: 700;
+      text-decoration: none;
+    }
+    nav a:hover, nav a:focus-visible { border-color: var(--teal); background: var(--aqua); }
+    main { padding-bottom: 32px; }
+    section { scroll-margin-top: 16px; }
+    .card {
+      margin: 0 0 16px; padding: clamp(18px, 3vw, 28px); border: 1px solid var(--line);
+      border-radius: 18px; background: var(--paper); box-shadow: var(--shadow);
+    }
+    .section-head { margin-bottom: 18px; }
+    .section-head small { color: var(--teal); font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+    h2 { margin: 3px 0 5px; color: var(--navy); font-size: clamp(1.35rem, 3vw, 1.8rem); line-height: 1.3; }
+    h3 { margin: 0 0 8px; color: var(--navy); font-size: 1.08rem; }
+    p { margin: 7px 0; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .mini-card { padding: 17px; border: 1px solid var(--line); border-radius: 14px; background: #fbfdfe; }
+    .molecule-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); gap: 22px; align-items: center; }
+    .molecule-stage {
+      min-height: 310px; display: grid; place-items: center; overflow: hidden;
+      border-radius: 16px; background: radial-gradient(circle at 50% 45%, #e8f6f5, #dcebef);
+    }
+    .molecule-stage svg { width: min(100%, 430px); height: auto; overflow: visible; }
+    .bond { stroke: #527183; stroke-width: 6; stroke-linecap: round; }
+    .bond.thin { stroke-width: 4; }
+    .atom { cursor: pointer; outline: none; }
+    .atom circle { stroke: white; stroke-width: 3; transition: transform .15s, filter .15s; }
+    .atom:hover circle, .atom:focus circle { filter: drop-shadow(0 0 7px #087f82); transform: scale(1.12); transform-box: fill-box; transform-origin: center; }
+    .atom text { pointer-events: none; font-size: 16px; font-weight: 900; text-anchor: middle; dominant-baseline: central; }
+    .atom-label { fill: #fff; }
+    .atom-h .atom-label { fill: #263d4b; font-size: 13px; }
+    .legend { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; color: var(--muted); font-size: .86rem; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .swatch { width: 12px; height: 12px; border-radius: 50%; }
+    .info-box, .notice { padding: 13px 15px; border-radius: 12px; background: var(--aqua); }
+    .notice { margin-top: 14px; border-left: 4px solid var(--gold); background: #fff8e4; }
+    .notice.danger { border-left-color: var(--red); background: #fff0ef; }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .pill { padding: 5px 10px; border-radius: 999px; background: #eaf2f6; color: #34566a; font-size: .84rem; font-weight: 700; }
+    .equation {
+      margin: 12px 0; padding: 13px; border: 1px solid var(--line); border-radius: 12px;
+      background: #f6f9fa; color: var(--navy); font: 700 1.12rem/1.5 "Cambria", Georgia, serif;
+      text-align: center; overflow-wrap: anywhere;
+    }
+    button.equation-trigger {
+      display: block; width: 100%; cursor: pointer; font: inherit;
+    }
+    button.equation-trigger::after {
+      display: block; margin-top: 4px; color: var(--teal);
+      content: "Bấm để xem mô phỏng"; font: 700 .72rem/1.4 "Segoe UI", Arial, sans-serif;
+    }
+    ul { padding-left: 21px; }
+    li { margin: 7px 0; }
+    .experiment { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, .8fr); gap: 20px; align-items: center; }
+    .lab-scene {
+      min-height: 250px; display: flex; align-items: end; justify-content: center; gap: 42px;
+      padding: 20px; border-radius: 16px; background: linear-gradient(#e9f4f6, #d8e9ed);
+    }
+    .vessel-wrap { min-width: 110px; text-align: center; }
+    .vessel {
+      position: relative; width: 110px; height: 145px; margin: auto;
+      overflow: hidden; border: 3px solid #7295a2; border-top: 0;
+      border-radius: 4px 4px 22px 22px; background: #ffffff88;
+    }
+    .solution { position: absolute; right: 0; bottom: 0; left: 0; height: 50%; background: #83c8d399; transition: background .8s, height .8s; }
+    .copper-piece {
+      position: absolute; z-index: 1; bottom: 14px; left: 39px; width: 32px; height: 26px;
+      border-radius: 45% 55% 40% 60%; background: linear-gradient(135deg, #efa263, #a54f20);
+      transition: opacity .8s, transform .8s;
+    }
+    .bubble {
+      position: absolute; bottom: 13px; left: 50%; width: 8px; height: 8px;
+      border: 1px solid #fff; border-radius: 50%; opacity: 0;
+    }
+    .running .bubble { animation: rise 1.4s infinite ease-in; }
+    .running .bubble:nth-child(2) { animation-delay: .35s; left: 35%; }
+    .running .bubble:nth-child(3) { animation-delay: .75s; left: 66%; }
+    @keyframes rise { from { transform: translateY(0); opacity: 0; } 35% { opacity: .9; } to { transform: translateY(-85px); opacity: 0; } }
+    .label { display: block; margin-top: 8px; color: #435f70; font-size: .84rem; font-weight: 700; }
+    .gas-label { align-self: center; color: #31596c; font-size: .85rem; text-align: center; }
+    .gas-cloud { display: inline-block; padding: 10px 12px; border: 1px dashed #85aab7; border-radius: 50%; background: #ffffff8a; }
+    .lab-scene.done .solution { height: 65%; background: linear-gradient(#9ad8e7, #298cb3); }
+    .lab-scene.done .copper-piece { opacity: .08; transform: translateY(-18px) scale(.8); }
+    .lab-scene.done .bubble { opacity: .8; }
+    .controls { display: flex; gap: 9px; flex-wrap: wrap; margin: 13px 0; }
+    button {
+      padding: 10px 15px; border: 0; border-radius: 10px; background: var(--navy);
+      color: white; font-weight: 750; cursor: pointer;
+    }
+    button:hover { filter: brightness(1.12); }
+    button.secondary { border: 1px solid var(--line); background: white; color: var(--navy); }
+    button:focus-visible, a:focus-visible { outline: 3px solid #f3c64e; outline-offset: 2px; }
+    .status { min-height: 48px; padding: 12px; border-radius: 10px; background: #f1f6f8; }
+    .safety-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+    .safety-item { padding: 15px; border: 1px solid #efd6d2; border-radius: 13px; background: #fff9f8; }
+    .sim-dialog {
+      width: min(660px, calc(100% - 28px)); max-height: min(760px, calc(100% - 28px));
+      padding: 0; border: 1px solid var(--line); border-radius: 18px; color: var(--ink);
+      background: var(--paper); box-shadow: 0 24px 80px #102b4660;
+    }
+    .sim-dialog::backdrop { background: #102b46a8; backdrop-filter: blur(3px); }
+    .sim-dialog-inner { padding: clamp(17px, 4vw, 25px); }
+    .sim-dialog-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+    .sim-dialog-head h2 { margin: 2px 0 8px; }
+    .sim-close { flex: 0 0 auto; padding: 6px 11px; }
+    .sim-equation { margin: 10px 0; font-size: 1.05rem; }
+    .sim-visual {
+      --liquid-color: #9acbd7;
+      position: relative; min-height: 225px; display: flex; align-items: end; justify-content: center;
+      gap: 24px; overflow: hidden; padding: 22px 14px 14px; border-radius: 14px;
+      background: linear-gradient(#edf6f7, #dcebef);
+    }
+    .sim-vessel-wrap { min-width: 105px; text-align: center; }
+    .sim-vessel {
+      position: relative; width: 105px; height: 130px; margin: auto; overflow: hidden;
+      border: 3px solid #7899a5; border-top: 0; border-radius: 4px 4px 20px 20px;
+      background: #ffffff9c;
+    }
+    .sim-liquid {
+      position: absolute; right: 0; bottom: 0; left: 0; height: 48%;
+      background: linear-gradient(#b8e3e9, #78b9ca); transition: height .8s, background .8s, filter .8s;
+    }
+    .sim-solid {
+      position: absolute; z-index: 1; bottom: 12px; left: calc(50% - 16px); width: 32px; height: 25px;
+      border-radius: 45% 55% 40% 60%; background: linear-gradient(135deg, #efa263, #a54f20);
+      transition: opacity .8s, transform .8s, background .8s;
+    }
+    .sim-solid.none { display: none; }
+    .sim-solid.sugar { width: 44px; height: 34px; border-radius: 7px; background: #fff8d9; }
+    .sim-solid.carbon { width: 34px; height: 28px; border-radius: 4px; background: #262626; }
+    .sim-bubbles { position: absolute; inset: 20px 8px 8px; opacity: 0; }
+    .sim-bubbles i {
+      position: absolute; bottom: 0; left: 24%; width: 8px; height: 8px;
+      border: 1px solid white; border-radius: 50%;
+    }
+    .sim-bubbles i:nth-child(2) { left: 57%; animation-delay: .35s; }
+    .sim-bubbles i:nth-child(3) { left: 75%; animation-delay: .7s; }
+    .sim-caption { max-width: 145px; align-self: center; color: #31596c; font-size: .84rem; text-align: center; }
+    .sim-source, .sim-flow { display: none; }
+    .sim-source .sim-vessel { width: 78px; height: 100px; }
+    .sim-source .sim-liquid { height: 72%; }
+    .sim-source-label, .sim-target-label { display: block; margin-top: 7px; color: #435f70; font-size: .76rem; font-weight: 700; }
+    .sim-flow { align-self: center; color: var(--teal); font-size: 1.5rem; }
+    .sim-gas { display: none; align-self: center; padding: 10px; border: 1px dashed #85aab7; border-radius: 50%; background: #ffffffa6; color: #31596c; font-size: .82rem; text-align: center; }
+    .sim-visual.sim-running .sim-bubbles { opacity: .8; }
+    .sim-visual.sim-running .sim-bubbles i { animation: rise 1.4s infinite ease-in; }
+    .sim-visual.sim-done.cu-concentrated .sim-liquid { height: 68%; background: linear-gradient(#a9e3ee, #208bb1); }
+    .sim-visual.sim-done.cu-concentrated .sim-solid { opacity: .08; transform: translateY(-18px) scale(.8); }
+    .sim-visual.sim-done.sugar-dehydration .sim-solid { left: calc(50% - 24px); width: 48px; height: 78px; border-radius: 12px 12px 4px 4px; background: linear-gradient(#333, #090909); transform: translateY(-9px); }
+    .sim-visual.sim-running.sugar-dehydration .sim-solid { background: #493627; }
+    .sim-visual.sim-done.carbon-oxidation .sim-solid { opacity: .12; transform: translateY(-18px) scale(.65); }
+    .sim-visual.sim-done.sugar-dehydration .sim-gas,
+    .sim-visual.sim-done.carbon-oxidation .sim-gas,
+    .sim-visual.sim-done.cu-concentrated .sim-gas { display: block; }
+    .sim-visual.dilution-safe, .sim-visual.dilution-unsafe { justify-content: center; gap: 12px; }
+    .sim-visual.dilution-safe .sim-source, .sim-visual.dilution-unsafe .sim-source,
+    .sim-visual.dilution-safe .sim-flow, .sim-visual.dilution-unsafe .sim-flow { display: block; }
+    .sim-visual.dilution-safe .sim-source .sim-liquid { background: linear-gradient(#f7df96, #d8a533); }
+    .sim-visual.dilution-unsafe .sim-source .sim-liquid { background: linear-gradient(#b8e3e9, #78b9ca); }
+    .sim-visual.dilution-unsafe .sim-target .sim-liquid { background: linear-gradient(#f7df96, #d8a533); }
+    .sim-visual.sim-running.dilution-safe .sim-flow,
+    .sim-visual.sim-running.dilution-unsafe .sim-flow { animation: flowPulse .7s infinite alternate; }
+    .sim-visual.sim-running.dilution-unsafe .sim-bubbles { opacity: .8; }
+    .sim-visual.sim-done.dilution-safe .sim-target .sim-liquid { height: 62%; filter: brightness(1.08); }
+    .sim-visual.sim-done.dilution-unsafe .sim-target .sim-liquid { height: 58%; filter: brightness(1.2) saturate(1.2); }
+    .splash-drops { position: absolute; inset: 0; pointer-events: none; z-index: 8; opacity: 0; }
+    .splash-drops i {
+      position: absolute; width: 9px; height: 9px; border-radius: 50%;
+      background: #f2c56b; box-shadow: 0 0 7px #e4a83e88;
+    }
+    .splash-drops i:nth-child(1) { left: 52%; bottom: 43%; }
+    .splash-drops i:nth-child(2) { left: 61%; bottom: 36%; }
+    .splash-drops i:nth-child(3) { left: 43%; bottom: 32%; }
+    .splash-drops i:nth-child(4) { left: 68%; bottom: 48%; }
+    .splash-drops i:nth-child(5) { left: 35%; bottom: 48%; }
+    .sim-visual.dilution-unsafe.sim-running .splash-drops,
+    .sim-visual.dilution-unsafe.sim-done .splash-drops { opacity: 1; }
+    .sim-visual.dilution-unsafe.sim-running .splash-drops i,
+    .sim-visual.dilution-unsafe.sim-done .splash-drops i { animation: acidSplash .75s infinite alternate ease-out; }
+    .splash-drops i:nth-child(2) { animation-delay: .12s; }
+    .splash-drops i:nth-child(3) { animation-delay: .23s; }
+    .splash-drops i:nth-child(4) { animation-delay: .34s; }
+    .splash-drops i:nth-child(5) { animation-delay: .45s; }
+    .sim-visual.dilution-unsafe.sim-done::before {
+      position: absolute; top: 18%; left: 50%; transform: translateX(-28%); z-index: 9;
+      color: #fff; content: "SÔI ĐỘT NGỘT · BẮN ACID";
+      padding: 5px 9px; border-radius: 8px; background: #a63c35; font-size: .72rem; font-weight: 900;
+    }
+    @keyframes acidSplash {
+      from { transform: translate(0, 18px) scale(.55); }
+      to { transform: translate(var(--splash-x, 18px), -55px) scale(1); }
+    }
+    .splash-drops i:nth-child(1) { --splash-x: 30px; }
+    .splash-drops i:nth-child(2) { --splash-x: 48px; }
+    .splash-drops i:nth-child(3) { --splash-x: -42px; }
+    .splash-drops i:nth-child(4) { --splash-x: 62px; }
+    .splash-drops i:nth-child(5) { --splash-x: -58px; }
+    .sim-visual.dilution-safe.sim-done::before {
+      position: absolute; left: 50%; bottom: 28%; transform: translateX(-50%);
+      color: #087f82; content: "Nhiệt phân tán đều · Kiểm soát được";
+      font-size: .76rem; font-weight: 900;
+    }
+    @keyframes flowPulse { from { opacity: .45; transform: translateY(-2px); } to { opacity: 1; transform: translateY(3px); } }
+    .sim-explanation { min-height: 58px; margin: 12px 0; padding: 12px 14px; border-radius: 11px; background: var(--aqua); }
+    .sim-explanation.danger { background: #fff0ef; color: #7d302b; }
+    .sim-warning { margin: 10px 0 0; color: var(--red); font-size: .86rem; font-weight: 700; }
+    .sim-dialog-actions { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
+    .footer { padding: 12px 0 28px; color: var(--muted); font-size: .88rem; text-align: center; }
+    @media (max-width: 720px) {
+      .hero-inner, .molecule-layout, .experiment { grid-template-columns: 1fr; display: grid; }
+      .hero-inner { align-items: start; }
+      .formula-badge { justify-self: start; }
+      .grid, .safety-grid { grid-template-columns: 1fr; }
+      .molecule-stage { min-height: 260px; }
+      .lab-scene { gap: 18px; padding: 14px 8px; }
+      .vessel { width: 88px; height: 125px; }
+      .copper-piece { left: 29px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <p class="kicker">Hóa học 11 · Bài học trực quan</p>
+        <h1>Bài 8: Sulfuric acid </h1>
+        <p>Khám phá cấu tạo, tính chất và mô phỏng phản ứng của H₂SO₄</p>
+      </div>
+      <div class="formula-badge" aria-label="Công thức phân tử H 2 S O 4">H₂SO₄</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav aria-label="Điều hướng bài học">
+      <a href="#cau-tao">Cấu tạo</a>
+      <a href="#tinh-chat">Tính chất</a>
+      <a href="#mo-phong">Mô phỏng Cu</a>
+      <a href="#an-toan">An toàn</a>
+    </nav>
+
+    <main>
+      <section id="cau-tao" class="card">
+        <div class="section-head">
+          <small>01 · Cấu tạo phân tử</small>
+          <h2>Mô hình H₂SO₄</h2>
+          <p class="muted">Chạm hoặc nhấn vào nguyên tử trên mô hình để xem tên nguyên tố. Mô hình minh họa dạng tứ diện quanh S.</p>
+        </div>
+        <div class="molecule-layout">
+          <div>
+            <div class="molecule-stage">
+              <svg viewBox="0 0 420 300" role="img" aria-labelledby="molTitle molDesc">
+                <title id="molTitle">Mô hình cấu tạo phân tử Sulfuric acid</title>
+                <desc id="molDesc">Một nguyên tử sulfur liên kết với bốn nguyên tử Oxygen; hai nhóm hydroxyl có thêm nguyên tử hydrogen.</desc>
+                <g aria-hidden="true">
+                  <line class="bond" x1="210" y1="150" x2="105" y2="85"/>
+                  <line class="bond thin" x1="218" y1="142" x2="113" y2="77"/>
+                  <line class="bond" x1="210" y1="150" x2="315" y2="85"/>
+                  <line class="bond thin" x1="202" y1="142" x2="307" y2="77"/>
+                  <line class="bond" x1="210" y1="150" x2="135" y2="225"/>
+                  <line class="bond" x1="210" y1="150" x2="285" y2="225"/>
+                  <line class="bond thin" x1="135" y1="225" x2="76" y2="254"/>
+                  <line class="bond thin" x1="285" y1="225" x2="344" y2="254"/>
+                </g>
+                <g class="atom" data-name="Sulfur (S)" tabindex="0" role="button" aria-label="Sulfur S">
+                  <circle cx="210" cy="150" r="31" fill="#e1ae24"/><text class="atom-label" x="210" y="150">S</text>
+                </g>
+                <g class="atom" data-name="Oxygen (O)" tabindex="0" role="button" aria-label="Oxygen O">
+                  <circle cx="105" cy="80" r="24" fill="#df5652"/><text class="atom-label" x="105" y="80">O</text>
+                </g>
+                <g class="atom" data-name="Oxygen (O)" tabindex="0" role="button" aria-label="Oxygen O">
+                  <circle cx="315" cy="80" r="24" fill="#df5652"/><text class="atom-label" x="315" y="80">O</text>
+                </g>
+                <g class="atom" data-name="Oxygen trong nhóm hydroxyl (–OH)" tabindex="0" role="button" aria-label="Oxygen trong nhóm hydroxyl">
+                  <circle cx="135" cy="225" r="24" fill="#df5652"/><text class="atom-label" x="135" y="225">O</text>
+                </g>
+                <g class="atom" data-name="Oxygen trong nhóm hydroxyl (–OH)" tabindex="0" role="button" aria-label="Oxygen trong nhóm hydroxyl">
+                  <circle cx="285" cy="225" r="24" fill="#df5652"/><text class="atom-label" x="285" y="225">O</text>
+                </g>
+                <g class="atom atom-h" data-name="Hydrogen (H)" tabindex="0" role="button" aria-label="Hydrogen H">
+                  <circle cx="68" cy="258" r="17" fill="#f7fbfd"/><text class="atom-label" x="68" y="258">H</text>
+                </g>
+                <g class="atom atom-h" data-name="Hydrogen (H)" tabindex="0" role="button" aria-label="Hydrogen H">
+                  <circle cx="352" cy="258" r="17" fill="#f7fbfd"/><text class="atom-label" x="352" y="258">H</text>
+                </g>
+              </svg>
+            </div>
+            <div class="legend" aria-label="Chú giải">
+              <span><i class="swatch" style="background:#e1ae24"></i>S</span>
+              <span><i class="swatch" style="background:#df5652"></i>O</span>
+              <span><i class="swatch" style="background:#f7fbfd;border:1px solid #aebfc8"></i>H</span>
+            </div>
+          </div>
+          <div>
+            <div class="equation">HO–S(=O)₂–OH</div>
+            <p id="atomInfo" class="info-box" aria-live="polite"><b>Thành phần:</b> 1 nguyên tử S, 4 nguyên tử O và 2 nguyên tử H; có hai nhóm –OH.</p>
+            <div class="pills">
+              <span class="pill">Chất lỏng sánh như dầu</span>
+              <span class="pill">Không màu</span>
+              <span class="pill">Háo nước mạnh</span>
+            </div>
+            <p class="muted">H₂SO₄ đặc tan vô hạn trong nước và tỏa nhiều nhiệt. Dung dịch H₂SO₄ 98% có khối lượng riêng khoảng 1,84 g/cm³.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="tinh-chat" class="card">
+        <div class="section-head">
+          <small>02 · Tính chất hóa học</small>
+          <h2>Những phản ứng cần nhớ</h2>
+          <p class="muted">Phân biệt tính acid của dung dịch loãng với tính oxi hóa và tính háo nước của H₂SO₄ đặc.</p>
+        </div>
+        <div class="grid">
+          <article class="mini-card">
+            <h3>A. Tính acid mạnh </h3>
+            <ul>
+              <li>Làm quỳ tím hóa đỏ; phản ứng với kim loại đứng trước H, base, oxide base và một số muối.</li>
+            </ul>
+            <div class="equation">Zn + H₂SO₄ → ZnSO₄ + H₂↑</div>
+            <div class="equation">Mg(OH)₂ + H₂SO₄ → MgSO₄ + 2H₂O</div>
+            <div class="equation">CuO + H₂SO₄ → CuSO₄ + H₂O</div>
+            <div class="equation">Na₂CO₃ + H₂SO₄ → Na₂SO₄ + CO₂↑ + H₂O</div>
+          </article>
+          <article class="mini-card">
+            <h3>B. Tính oxi hóa mạnh</h3>
+            <p>Oxi hóa được nhiều kim loại và phi kim; sản phẩm khử thường gặp là SO₂. Đồng không phản ứng với H₂SO₄ loãng nhưng phản ứng với H₂SO₄ đặc, nóng.</p>
+            <button class="equation equation-trigger" type="button" data-sim="cu-concentrated" aria-haspopup="dialog">Cu + 2H₂SO₄ (đặc, nóng) → CuSO₄ + SO₂↑ + 2H₂O</button>
+            <button class="equation equation-trigger" type="button" data-sim="carbon-oxidation" aria-haspopup="dialog">C + 2H₂SO₄ (đặc, nóng) → CO₂↑ + 2SO₂↑ + 2H₂O</button>
+            <p>Hiện tượng mô phỏng: đồng tan dần, dung dịch chuyển xanh do CuSO₄ và có khí SO₂ thoát ra; carbon bị oxi hóa tạo CO₂, SO₂ và hơi nước. Sắt, nhôm, crom bị thụ động hóa trong H₂SO₄ đặc, nguội.</p>
+          </article>
+          <article class="mini-card">
+            <h3>C. Tính háo nước</h3>
+            <p>Lấy nước từ nhiều hợp chất hữu cơ; đường saccharose bị tách nước và hóa đen.</p>
+            <button class="equation equation-trigger" type="button" data-sim="sugar-dehydration" aria-haspopup="dialog">C₁₂H₂₂O₁₁ → 12C + 11H₂O</button>
+            <p>Hiện tượng thu được là khối carbon hóa đen, xốp, có thể kèm bọt và sủi do nước bị tách ra.</p>
+          </article>
+          <article class="mini-card">
+            <h3>Lưu ý khi pha loãng acid</h3>
+            <p>Quá trình hòa tan tỏa nhiệt mạnh. Khi được thực hiện trong phòng thí nghiệm theo hướng dẫn, luôn rót từ từ acid vào nước; không rót nước vào acid đặc vì có nguy cơ sôi bắn.</p>
+            <p><b>Mô phỏng an toàn · Rót acid vào nước</b></p>
+            <button class="equation equation-trigger" type="button" data-sim="dilution-safe" aria-haspopup="dialog">H₂SO₄ + H₂O → H₃O⁺ + HSO₄⁻ + nhiệt</button>
+            <p><b>Mô phỏng nguy hiểm · Rót nước vào acid</b></p>
+            <button class="equation equation-trigger" type="button" data-sim="dilution-unsafe" aria-haspopup="dialog">H₂SO₄ + H₂O → H₃O⁺ + HSO₄⁻ + nhiệt</button>
+            <div class="notice danger"><b>Không tự làm thí nghiệm.</b> Các phản ứng với acid đặc, nóng và khí SO₂ chỉ được thực hiện bởi người có chuyên môn, trong điều kiện phòng thí nghiệm phù hợp.</div>
+          </article>
+        </div>
+      </section>
+
+      <section id="mo-phong" class="card">
+        <div class="section-head">
+          <small>03 · Thí nghiệm ảo</small>
+          <h2>Đồng tác dụng với Sulfuric acid đặc, nóng</h2>
+          <p class="muted">Mô phỏng hiện tượng để học tập; trang web không sử dụng hóa chất thật và không tạo ra khí.</p>
+        </div>
+        <div class="experiment">
+          <div>
+            <div id="labScene" class="lab-scene" aria-label="Mô phỏng ảo phản ứng đồng với Sulfuric acid">
+              <div class="vessel-wrap">
+                <div class="vessel">
+                  <div class="solution"></div>
+                  <div class="copper-piece"></div>
+                  <i class="bubble"></i><i class="bubble"></i><i class="bubble"></i>
+                </div>
+                <span class="label">Đồng và dung dịch</span>
+              </div>
+              <div class="gas-label"><span class="gas-cloud">Khí SO₂<br>(mô phỏng)</span></div>
+            </div>
+            <div class="controls">
+              <button id="runExperiment" type="button">▶ Chạy mô phỏng</button>
+              <button id="resetExperiment" class="secondary" type="button">↺ Làm lại</button>
+            </div>
+            <div id="experimentStatus" class="status" role="status" aria-live="polite">Nhấn “Chạy mô phỏng” để xem hiện tượng dự kiến.</div>
+          </div>
+          <div>
+            <h3>Phương trình phản ứng</h3>
+            <button class="equation equation-trigger" type="button" data-sim="cu-concentrated" aria-haspopup="dialog">Cu + 2H₂SO₄ (đặc, nóng) → CuSO₄ + SO₂↑ + 2H₂O</button>
+            <button class="equation equation-trigger" type="button" data-sim="cu-dilute" aria-haspopup="dialog">Cu + H₂SO₄ (loãng) → không phản ứng</button>
+            <p><b>Nhận xét:</b> Cu bị oxi hóa thành Cu²⁺; S trong H₂SO₄ bị khử từ +6 xuống +4 trong SO₂.</p>
+            <div class="notice danger"><b>Cảnh báo:</b> SO₂ là khí độc, gây kích ứng đường hô hấp. Đây chỉ là hình ảnh minh họa, không làm theo ngoài đời.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="an-toan" class="card">
+        <div class="section-head">
+          <small>04 · An toàn hóa chất</small>
+          <h2>Bảo quản, sử dụng và sơ cứu</h2>
+        </div>
+        <div class="safety-grid">
+          <article class="safety-item">
+            <h3>Bảo quản</h3>
+            <p>Đậy kín, dán nhãn rõ ràng, để nơi chắc chắn và tách khỏi các chất dễ gây cháy hoặc phản ứng mạnh.</p>
+          </article>
+          <article class="safety-item">
+            <h3>Khi làm việc</h3>
+            <p>Chỉ làm theo hướng dẫn của giáo viên; dùng kính, găng và áo bảo hộ phù hợp. Không nếm, không chạm tay trực tiếp và không tự ý tiến hành thí nghiệm.</p>
+          </article>
+          <article class="safety-item">
+            <h3>Nếu bị bắn vào da hoặc mắt</h3>
+            <p>Báo ngay cho giáo viên/người lớn và xả liên tục bằng thật nhiều nước sạch; cởi bỏ quần áo bị nhiễm bẩn khi có thể. Nếu dính vào mắt hoặc bỏng, cần trợ giúp y tế khẩn cấp. Không tự trung hòa acid trên da.</p>
+          </article>
+        </div>
+        <div class="notice danger"><b>Ưu tiên an toàn:</b> H₂SO₄ đặc gây bỏng nặng; nhiệt sinh ra khi pha loãng và khí SO₂ trong phản ứng đều nguy hiểm. Phần thực hành trên trang này chỉ là mô phỏng học tập.</div>
+      </section>
+    </main>
+    <footer class="footer">Học liệu trực quan Hóa học 11 · Công thức được hiển thị trực tiếp bằng ký tự Unicode · Hoạt động ngoại tuyến</footer>
+  </div>
+
+  <dialog id="simulationDialog" class="sim-dialog" aria-labelledby="simulationTitle">
+    <div class="sim-dialog-inner">
+      <div class="sim-dialog-head">
+        <div>
+          <p class="kicker" style="color:var(--teal);margin-bottom:2px">Mô phỏng trực quan · Không dùng hóa chất thật</p>
+          <h2 id="simulationTitle"></h2>
+        </div>
+        <button id="closeSimulation" class="secondary sim-close" type="button" aria-label="Đóng cửa sổ mô phỏng">Đóng</button>
+      </div>
+      <p id="simulationIntro" class="muted"></p>
+      <div id="simulationEquation" class="equation sim-equation"></div>
+      <div id="simulationVisual" class="sim-visual" aria-label="Hình mô phỏng phản ứng">
+        <div class="sim-source">
+          <div class="sim-vessel">
+            <div class="sim-liquid"></div>
+          </div>
+          <span id="simulationSourceLabel" class="sim-source-label"></span>
+        </div>
+        <span class="sim-flow" aria-hidden="true">↓</span>
+        <div class="sim-vessel-wrap sim-target">
+          <div class="sim-vessel">
+            <div class="sim-liquid"></div>
+            <div class="sim-solid"></div>
+            <div class="sim-bubbles" aria-hidden="true"><i></i><i></i><i></i></div>
+          </div>
+          <span id="simulationTargetLabel" class="sim-target-label"></span>
+        </div>
+        <div id="simulationGas" class="sim-gas"></div>
+        <div class="splash-drops" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div id="simulationExplanation" class="sim-explanation" role="status" aria-live="polite"></div>
+      <p id="simulationWarning" class="sim-warning"></p>
+      <div class="sim-dialog-actions">
+        <button id="replaySimulation" type="button">▶ Chạy lại mô phỏng</button>
+        <button id="closeSimulationBottom" class="secondary" type="button">Đóng</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    const atomInfo = document.getElementById("atomInfo");
+    document.querySelectorAll(".atom").forEach((atom) => {
+      const showInfo = () => {
+        atomInfo.textContent = atom.dataset.name;
+      };
+      atom.addEventListener("click", showInfo);
+      atom.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          showInfo();
+        }
+      });
+    });
+
+    const labScene = document.getElementById("labScene");
+    const experimentStatus = document.getElementById("experimentStatus");
+    let experimentTimer;
+
+    document.getElementById("runExperiment").addEventListener("click", () => {
+      window.clearTimeout(experimentTimer);
+      labScene.classList.remove("done");
+      labScene.classList.add("running");
+      experimentStatus.textContent = "Đang mô phỏng phản ứng: đồng tan dần, dung dịch xanh lên và xuất hiện bọt khí.";
+      experimentTimer = window.setTimeout(() => {
+        labScene.classList.remove("running");
+        labScene.classList.add("done");
+        experimentStatus.textContent = "Kết thúc mô phỏng. Dự kiến thu được dung dịch CuSO₄ màu xanh, khí SO₂ và nước.";
+      }, 2200);
+    });
+
+    document.getElementById("resetExperiment").addEventListener("click", () => {
+      window.clearTimeout(experimentTimer);
+      labScene.classList.remove("running", "done");
+      experimentStatus.textContent = "Mô phỏng đã được đặt lại. Nhấn “Chạy mô phỏng” để xem lại hiện tượng.";
+    });
+
+    window.addEventListener("load", () => {
+      window.requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
+    });
+
+    window.addEventListener("pageshow", (event) => {
+      if (event.persisted) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
+    });
+
+    const simulationDialog = document.getElementById("simulationDialog");
+    const simulationVisual = document.getElementById("simulationVisual");
+    const simulationExplanation = document.getElementById("simulationExplanation");
+    const simulationWarning = document.getElementById("simulationWarning");
+    let activeSimulation;
+    let simulationTimer;
+
+    const simulations = {
+      "cu-dilute": {
+        title: "Đồng và H₂SO₄ loãng",
+        equation: "Cu + H₂SO₄ (loãng) → không phản ứng",
+        intro: "So sánh với trường hợp acid đặc, nóng: H₂SO₄ loãng không oxi hóa được đồng.",
+        source: "",
+        target: "Cu trong acid loãng",
+        solid: "copper",
+        gas: "",
+        running: "Quan sát mô phỏng: đồng và dung dịch hầu như không đổi.",
+        result: "Không có phản ứng; đồng không tan và không có khí H₂ thoát ra.",
+        warning: "Mô phỏng lý thuyết, không phải hướng dẫn thao tác với acid."
+      },
+      "cu-concentrated": {
+        title: "Đồng và H₂SO₄ đặc, nóng",
+        equation: "Cu + 2H₂SO₄ (đặc, nóng) → CuSO₄ + SO₂↑ + 2H₂O",
+        intro: "H₂SO₄ đặc, nóng có tính oxi hóa mạnh; sulfur bị khử từ +6 xuống +4.",
+        source: "",
+        target: "Cu + dung dịch",
+        solid: "copper",
+        gas: "SO₂ (khí độc)",
+        running: "Mô phỏng phản ứng: đồng tan dần, dung dịch chuyển xanh và khí thoát ra.",
+        result: "Sản phẩm dự kiến: dung dịch CuSO₄ màu xanh, khí SO₂ và nước.",
+        warning: "SO₂ độc; phản ứng với acid đặc, nóng chỉ được quan sát qua mô phỏng an toàn."
+      },
+      "sugar-dehydration": {
+        title: "Than hóa đường saccarose",
+        equation: "C₁₂H₂₂O₁₁ → 12C + 11H₂O",
+        intro: "H₂SO₄ đặc hút nước khỏi saccarose; phần carbon còn lại tạo thành khối đen xốp.",
+        source: "",
+        target: "Saccarose",
+        solid: "sugar",
+        gas: "Hơi nước · minh họa",
+        running: "Mô phỏng quá trình đường sẫm màu và mất nước.",
+        result: "Đường bị than hóa, tạo carbon màu đen và nước; khối carbon có thể trương nở.",
+        warning: "Quá trình thực tế tỏa nhiệt mạnh và có thể sinh khí nguy hiểm; không tự làm."
+      },
+      "carbon-oxidation": {
+        title: "Carbon phản ứng với H₂SO₄ đặc, nóng",
+        equation: "C + 2H₂SO₄ → CO₂↑ + 2SO₂↑ + 2H₂O",
+        intro: "Carbon bị oxi hóa thành CO₂; H₂SO₄ đóng vai trò chất oxi hóa và tạo SO₂.",
+        source: "",
+        target: "Carbon",
+        solid: "carbon",
+        gas: "CO₂ + SO₂",
+        running: "Mô phỏng: carbon giảm dần và sản phẩm khí được biểu diễn bằng bọt.",
+        result: "Sản phẩm theo phương trình: CO₂, SO₂ và H₂O.",
+        warning: "SO₂ là khí độc; hình ảnh này chỉ minh họa, không tạo khí thật."
+      },
+      "dilution-safe": {
+        title: "Pha loãng · Acid vào nước",
+        equation: "H₂SO₄ + H₂O → H₃O⁺ + HSO₄⁻ + nhiệt",
+        intro: "Minh họa trường hợp acid được thêm từ từ vào nước để nhiệt tỏa ra phân tán trong toàn dung dịch.",
+        source: "Acid (minh họa)",
+        target: "Nước",
+        solid: "none",
+        gas: "",
+        running: "Mô phỏng dòng acid đi vào nước; dung dịch ấm lên.",
+        result: "Nhiệt được phân tán đều hơn. Đây là chiều pha loãng được dạy trong phòng thí nghiệm có giám sát.",
+        warning: "Chỉ xem mô phỏng; không tự pha loãng acid."
+      },
+      "dilution-unsafe": {
+        title: "Pha loãng · Nước vào acid",
+        equation: "H₂SO₄ + H₂O → H₃O⁺ + HSO₄⁻ + nhiệt",
+        intro: "Nước rơi vào acid đặc tạo vùng tiếp xúc nóng đột ngột; nước bốc hơi và có thể làm acid đặc bắn ra ngoài.",
+        source: "Nước rơi vào acid",
+        target: "Acid đặc",
+        solid: "none",
+        gas: "Hơi nước",
+        running: "Mô phỏng nước đổ vào acid: vùng tiếp xúc nóng nhanh, sôi bùng nổ và giọt acid văng ra.",
+        result: "Đây là trường hợp rất nguy hiểm: dung dịch sôi cục bộ, bắn tóe acid ra xa. Tuyệt đối không thực hiện theo cách này.",
+        warning: "Cảnh báo: nguy cơ bỏng hóa chất nghiêm trọng. Chỉ xem mô phỏng, không thực hành."
+      }
+    };
+
+    function runEquationSimulation() {
+      const simulation = simulations[activeSimulation];
+      if (!simulation) {
+        throw new Error("Không tìm thấy dữ liệu mô phỏng cho phương trình đã chọn.");
+      }
+
+      window.clearTimeout(simulationTimer);
+      simulationVisual.className = "sim-visual " + activeSimulation + " sim-running";
+      simulationVisual.querySelector(".sim-solid").className = "sim-solid " + simulation.solid;
+      document.getElementById("simulationTitle").textContent = simulation.title;
+      document.getElementById("simulationEquation").textContent = simulation.equation;
+      document.getElementById("simulationIntro").textContent = simulation.intro;
+      document.getElementById("simulationSourceLabel").textContent = simulation.source;
+      document.getElementById("simulationTargetLabel").textContent = simulation.target;
+      document.getElementById("simulationGas").textContent = simulation.gas;
+      simulationExplanation.classList.toggle("danger", activeSimulation === "dilution-unsafe");
+      simulationWarning.textContent = simulation.warning;
+      simulationExplanation.textContent = simulation.running;
+
+      simulationTimer = window.setTimeout(() => {
+        simulationVisual.classList.remove("sim-running");
+        simulationVisual.classList.add("sim-done");
+        simulationExplanation.textContent = simulation.result;
+      }, 1800);
+    }
+
+    document.querySelectorAll(".equation-trigger").forEach((equationButton) => {
+      equationButton.addEventListener("click", () => {
+        activeSimulation = equationButton.dataset.sim;
+        if (!simulations[activeSimulation]) {
+          throw new Error("Nút phương trình chưa được gắn với một mô phỏng hợp lệ.");
+        }
+        simulationDialog.showModal();
+        runEquationSimulation();
+      });
+    });
+
+    function closeSimulation() {
+      window.clearTimeout(simulationTimer);
+      if (simulationDialog.open) simulationDialog.close();
+    }
+
+    document.getElementById("closeSimulation").addEventListener("click", closeSimulation);
+    document.getElementById("closeSimulationBottom").addEventListener("click", closeSimulation);
+    document.getElementById("replaySimulation").addEventListener("click", runEquationSimulation);
+    simulationDialog.addEventListener("close", () => window.clearTimeout(simulationTimer));
+  </script>
+</body>
+</html>
